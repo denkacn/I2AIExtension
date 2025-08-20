@@ -1,7 +1,7 @@
 {
   "name": "com.puzikgames.coradolog",
   "displayName": "I2 Localization AI Extension",
-  "version": "0.0.82",
+  "version": "0.0.87",
   "unity": "2022.1",
   "author": "Denis Puzik",
   "description": "AI Extension for I2 Localization",
