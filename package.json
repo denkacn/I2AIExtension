@@ -1,0 +1,14 @@
+{
+  "name": "com.puzikgames.coradolog",
+  "displayName": "I2 Localization AI Extension",
+  "version": "0.0.82",
+  "unity": "2022.1",
+  "author": "Denis Puzik",
+  "description": "AI Extension for I2 Localization",
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denkacn/I2AIExtension.git"
+  }
+}
