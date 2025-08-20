@@ -32,7 +32,7 @@ namespace I2AIExtension.Editor.Views
 
             EditorGUILayout.BeginHorizontal(UiStyles.OddRowStyle);
             //EditorGUILayout.LabelField("Id", UiStyles.LabelHeaderStyle, GUILayout.Width(40));
-            EditorGUILayout.LabelField("Terms", UiStyles.LabelHeaderStyle, GUILayout.Width(200));
+            EditorGUILayout.LabelField("Terms", UiStyles.LabelHeaderStyle, GUILayout.Width(215));
             EditorGUILayout.LabelField("Base Text", UiStyles.LabelHeaderStyle, GUILayout.Width(415));
             EditorGUILayout.LabelField("Translation", UiStyles.LabelHeaderStyle, GUILayout.Width(400));
             EditorGUILayout.LabelField("Translate", UiStyles.LabelHeaderStyle, GUILayout.Width(100));
@@ -103,9 +103,9 @@ namespace I2AIExtension.Editor.Views
                     }
                 }
 
-                if (!string.IsNullOrEmpty(row.TranslatedText) && (row.TranslatedText != row.OriginalText))
+                if (!string.IsNullOrEmpty(row.TranslatedText))
                 {
-                    if (row.IsShowTranslated)
+                    if (row.IsShowTranslated && row.TranslatedText != row.OriginalText)
                     {
                         var addButtonContent = new GUIContent("A", "Apply Change");
                         if (GUILayout.Button(addButtonContent, GUILayout.Width(20)))
@@ -124,10 +124,7 @@ namespace I2AIExtension.Editor.Views
                             _translateExtensionManager.RewertChange(row);
                         }
                     }
-                }
-
-                if (!string.IsNullOrEmpty(row.TranslatedText))
-                {
+                    
                     EditorGUILayout.LabelField("●",
                         row.TranslatedText != row.OriginalText
                             ? UiStyles.LabelRowStyleGreen
@@ -140,7 +137,8 @@ namespace I2AIExtension.Editor.Views
             
             EditorGUILayout.Space();
 
-            if (_translateExtensionManager.IsTranslateProviderAndTranslateSettingSetup)
+            //down button no needed
+            /*if (_translateExtensionManager.IsTranslateProviderAndTranslateSettingSetup)
             {
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
@@ -166,7 +164,7 @@ namespace I2AIExtension.Editor.Views
             
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();
-            }
+            }*/
             
             EditorGUI.indentLevel--;
             EditorGUILayout.EndScrollView();

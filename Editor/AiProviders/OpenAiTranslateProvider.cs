@@ -47,7 +47,7 @@ namespace I2AIExtension.Editor.AiProviders
                 }
                 else
                 {
-                    Response? response = null;
+                    Response response = null;
                     
                     try
                     {

@@ -10,6 +10,7 @@ namespace I2AIExtension.Editor.Views
     {
         private readonly I2LocAiTranslateExtensionManager _translateExtensionManager;
         private readonly LanguageSourceAsset _languageSourceAsset;
+        private string _filter;
 
         public TranslateSettingsButtonView(EditorWindow owner, I2LocAiTranslateExtensionManager translateExtensionManager, LanguageSourceAsset languageSourceAsset) : base(owner)
         {
@@ -19,19 +20,30 @@ namespace I2AIExtension.Editor.Views
 
         public void Draw()
         {
+            GUILayout.BeginVertical(UiStyles.OddRowStyle);
+            EditorGUILayout.LabelField("Translation Controls", EditorStyles.boldLabel);
             GUILayout.BeginHorizontal();
             
             var optionsArray = _translateExtensionManager.GetAvailableLanguages().ToArray();
 
             if (optionsArray.Length > 0)
             {
+                var originalLabelWidth = EditorGUIUtility.labelWidth;
+                EditorGUIUtility.labelWidth = UiTools.GetLabelWidth("Source"); 
                 var selectedSourceLanguageIndex = UiTools.GetIndexForValue(_translateExtensionManager.SourceLanguage, optionsArray);
-                selectedSourceLanguageIndex = EditorGUILayout.Popup("Source", selectedSourceLanguageIndex, optionsArray);
+                selectedSourceLanguageIndex = EditorGUILayout.Popup("Source", selectedSourceLanguageIndex, optionsArray,GUILayout.Width(300));
                 _translateExtensionManager.SourceLanguage = optionsArray[selectedSourceLanguageIndex];
+                
+                GUILayout.Space(20);
             
+                EditorGUIUtility.labelWidth = UiTools.GetLabelWidth("Destination"); 
                 var selectedDestinationLanguageIndex = UiTools.GetIndexForValue(_translateExtensionManager.DestinationLanguage, optionsArray);
-                selectedDestinationLanguageIndex = EditorGUILayout.Popup("Destination", selectedDestinationLanguageIndex, optionsArray);
+                selectedDestinationLanguageIndex = EditorGUILayout.Popup("Destination", selectedDestinationLanguageIndex, optionsArray, GUILayout.Width(300));
                 _translateExtensionManager.DestinationLanguage = optionsArray[selectedDestinationLanguageIndex];
+                
+                EditorGUIUtility.labelWidth = originalLabelWidth;
+                
+                GUILayout.Space(20);
             
                 if (GUILayout.Button("Display Terms"))
                 {
@@ -73,7 +85,23 @@ namespace I2AIExtension.Editor.Views
                 }
             }
             
+            GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
+            
+            GUILayout.Space(10);
+            
+            GUILayout.BeginHorizontal();
+            
+            _filter = EditorGUILayout.TextField("Filter", _filter,GUILayout.Width(400));
+            if (GUILayout.Button("Apply Filter"))
+            {
+                _translateExtensionManager.GetTranslationTerms(_filter);
+            }
+            
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+            GUILayout.Space(10);
+            GUILayout.EndVertical();
         }
     }
 }

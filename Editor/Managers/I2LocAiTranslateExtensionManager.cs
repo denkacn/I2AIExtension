@@ -61,7 +61,7 @@ namespace I2AIExtension.Editor.Managers
             LoadPromtSettings();
         }
         
-        public void GetTranslationTerms()
+        public void GetTranslationTerms(string filter = null)
         {
             _translationsData.Clear();
             
@@ -71,6 +71,7 @@ namespace I2AIExtension.Editor.Managers
             foreach (var term in terms)
             {
                 if (string.IsNullOrEmpty(term.Term)) continue;
+                if (filter != null && !term.Term.Contains(filter)) continue;
 
                 _translationsData.Add(new TranslationRowData(index, term.Term,
                     term.Languages[_availableLanguages.IndexOf(SourceLanguage)],
