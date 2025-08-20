@@ -166,6 +166,8 @@ namespace I2AIExtension.Editor.Managers
             _languageSourceAsset.SourceData.mTerms.Find(t => t.Term == translationData.Term)
                 .Languages[_availableLanguages.IndexOf(DestinationLanguage)] = translationData.TranslatedText;
             
+            translationData.OriginalText = translationData.TranslatedText;
+            
             return true;
         }
         
