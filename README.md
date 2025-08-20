@@ -17,6 +17,8 @@ An extension for Unity I2 Localization (https://assetstore.unity.com/packages/to
 13. Click **Apply Changes** to apply translations to the **LanguageSourceAsset**.  
 14. You can also edit each term individually: switch to **Translated mode** and press **E**.
 
+<img src="Doc/main-window.png" alt="Providers" width="1000"/>
+
 ### Providers
 
 You will need to provide some data to configure the provider.
@@ -35,6 +37,8 @@ You will need to provide some data to configure the provider.
 
 Save Path -> `Assets/Editor/TranslateProviderSettings.json`
 
+<img src="Doc/add-provider.png" alt="Providers" width="1000"/>
+
 ### Promts
 
 A **prompt** allows you to customize the translation — for example, you can set a strict style, a more cheerful tone, or even add references to *Star Wars*.  
@@ -45,3 +49,5 @@ The default prompt looks like this:
 However, you can customize it as you wish.
 
 Save Path -> `Assets/Editor/PromtSettings.json`
+
+<img src="Doc/add-promts.png" alt="Providers" width="1000"/>
