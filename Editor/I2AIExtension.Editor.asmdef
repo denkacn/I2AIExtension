@@ -3,7 +3,7 @@
     "rootNamespace": "",
     "references": [
         "I2AIExtension.Runtime",
-        "I2Loc",
+        "I2Loc.Runtime",
         "I2Loc.Editor"
     ],
     "includePlatforms": [
