@@ -1,8 +1,7 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using I2.AiExtension.Editor.AiProviders;
-using I2.AiExtension.Editor.AiProviders.Settings;
+using I2AIExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.Models;
 using I2AIExtension.Editor.PromtFactories;
 using Unity.Plastic.Newtonsoft.Json;
@@ -11,9 +10,9 @@ using UnityEngine.Networking;
 
 namespace I2AIExtension.Editor.AiProviders
 {
-    public class OllamaTranslateProvider : IAiTranslateProvider
+    public class OllamaTranslateProvider : BaseTranslateProvider
     {
-        public async Task<TranslatedData> GetTranslate(TranslatedPromtData promtData, BaseTranslateProviderSettings settings, PromtFactoryBase promtFactory)
+        public override async Task<TranslatedData> GetTranslate(TranslatedPromtData promtData, BaseTranslateProviderSettings settings, PromtFactoryBase promtFactory)
         {
             var requestData = new Request
             {
@@ -34,15 +33,18 @@ namespace I2AIExtension.Editor.AiProviders
             www.downloadHandler = new DownloadHandlerBuffer();
             www.timeout = 300;
             www.SetRequestHeader("Content-Type", "application/json");
-            
-            if (!string.IsNullOrEmpty(settings.Token))
-                www.SetRequestHeader("Authorization", "Bearer " + settings.Token);
+
+            if (settings.IsTokenExist)
+            {
+                var token = await GetToken(settings);
+                www.SetRequestHeader("Authorization", $"Bearer {token}");
+            }
 
             await www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Ошибка запроса: " + www.error);
+                Debug.LogError("Request error:" + www.error);
             }
             else
             {

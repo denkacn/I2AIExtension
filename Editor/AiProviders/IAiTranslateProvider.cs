@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using I2.AiExtension.Editor.AiProviders.Settings;
+using I2AIExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.Models;
 using I2AIExtension.Editor.PromtFactories;
 

@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using I2.AiExtension.Editor.AiProviders;
-using I2.AiExtension.Editor.AiProviders.Settings;
+using I2AIExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.Models;
 using I2AIExtension.Editor.PromtFactories;
 using Unity.Plastic.Newtonsoft.Json;
@@ -12,9 +11,9 @@ using UnityEngine.Networking;
 
 namespace I2AIExtension.Editor.AiProviders
 {
-    public class OpenAiTranslateProvider : IAiTranslateProvider
+    public class OpenAiTranslateProvider : BaseTranslateProvider
     {
-        public virtual async Task<TranslatedData> GetTranslate(TranslatedPromtData promtData, BaseTranslateProviderSettings settings, PromtFactoryBase promtFactory)
+        public override async Task<TranslatedData> GetTranslate(TranslatedPromtData promtData, BaseTranslateProviderSettings settings, PromtFactoryBase promtFactory)
         {
             var request = new Request()
             {
@@ -34,8 +33,11 @@ namespace I2AIExtension.Editor.AiProviders
                 www.downloadHandler = new DownloadHandlerBuffer();
                 www.SetRequestHeader("Content-Type", "application/json");
 
-                if (!string.IsNullOrEmpty(settings.Token))
-                    www.SetRequestHeader("Authorization", $"Bearer {settings.Token}");
+                if (settings.IsTokenExist)
+                {
+                    var token = await GetToken(settings);
+                    www.SetRequestHeader("Authorization", $"Bearer {token}");
+                }
 
                 www.timeout = 300;
 

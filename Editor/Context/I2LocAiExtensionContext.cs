@@ -1,7 +1,6 @@
 using System;
-using I2.AiExtension.Editor.AiProviders;
-using I2.AiExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.AiProviders;
+using I2AIExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.PromtFactories;
 
 namespace I2AIExtension.Editor.Context

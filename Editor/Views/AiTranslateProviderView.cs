@@ -1,6 +1,5 @@
-using I2.AiExtension.Editor.AiProviders;
-using I2.AiExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.AiProviders;
+using I2AIExtension.Editor.AiProviders.Settings;
 using I2AIExtension.Editor.Managers;
 using I2AIExtension.Editor.Tools;
 using UnityEditor;
@@ -67,6 +66,21 @@ namespace I2AIExtension.Editor.Views
             EditorGUIUtility.labelWidth = UiTools.GetLabelWidth("Token"); 
             _newTranslateProviderSettings.Token = EditorGUILayout.TextField("Token", _newTranslateProviderSettings.Token,GUILayout.Width(250));
             
+            if (GUILayout.Button("File", _newTranslateProviderSettings.IsTokenFromFile? UiStyles.ButtonStyleGreen : EditorStyles.miniButton))
+            {
+                var path = EditorUtility.OpenFilePanel(
+                    "Select File",
+                    "",
+                    "txt"
+                );
+        
+                if (!string.IsNullOrEmpty(path))
+                {
+                    _newTranslateProviderSettings.TokenFilePath = path;
+                    _newTranslateProviderSettings.IsTokenFromFile = true;
+                }
+            }
+            
             EditorGUIUtility.labelWidth = UiTools.GetLabelWidth("Model"); 
             _newTranslateProviderSettings.Model = EditorGUILayout.TextField("Model", _newTranslateProviderSettings.Model,GUILayout.Width(250));
 
@@ -96,7 +110,7 @@ namespace I2AIExtension.Editor.Views
                 EditorGUILayout.LabelField(provider.ProviderType.ToString(), GUILayout.Width(100));
                 EditorGUILayout.LabelField(provider.Host, GUILayout.Width(200));
                 EditorGUILayout.LabelField(provider.Endpoint, GUILayout.Width(200));
-                EditorGUILayout.LabelField(string.IsNullOrEmpty(provider.Token) ? "" : "*****", GUILayout.Width(200));
+                EditorGUILayout.LabelField(provider.IsTokenFromFile ? "From File" : string.IsNullOrEmpty(provider.Token) ? "" : "*****", GUILayout.Width(200));
                 EditorGUILayout.LabelField(provider.Model, GUILayout.Width(200));
                 
                 var isSelected = _translateExtensionManager.SelectedTranslateProviderId == provider.Id;
