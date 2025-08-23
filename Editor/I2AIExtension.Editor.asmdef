@@ -3,10 +3,12 @@
     "rootNamespace": "",
     "references": [
         "I2AIExtension.Runtime",
-        "I2.Runtime",
-        "I2.Editor"
+        "I2Loc.Runtime",
+        "I2Loc.Editor"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
