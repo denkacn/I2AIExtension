@@ -2,7 +2,7 @@
     "name": "I2AIExtension.Runtime",
     "rootNamespace": "",
     "references": [
-        "I2Loc.Runtime"
+        "I2Loc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
