@@ -35,6 +35,8 @@ You will need to provide some data to configure the provider.
 - **Token**: *insert your API key from the admin panel here*  
 - **Model**: `gpt-5`  
 
+`Added the ability to store Tokens in separate files for increased security.`
+
 Save Path -> `Assets/Editor/TranslateProviderSettings.json`
 
 <img src="Doc/add-provider.png" alt="Providers" width="1000"/>
