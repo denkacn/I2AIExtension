@@ -65,6 +65,16 @@ namespace I2AIExtension.Editor.Tools
             return DisplayDialog("Do you really want to translate all the terms?");
         }
         
+        public static bool DisplayRemoveProviderDialog()
+        {
+            return DisplayDialog("Do you really want to delete provider?");
+        }
+        
+        public static bool DisplayRemovePromtDialog()
+        {
+            return DisplayDialog("Do you really want to delete promt?");
+        }
+        
         public static bool DisplayApplyChangesDialog()
         {
             return DisplayDialog("Do you really want to apply changes in all terms?\nThis will overwrite non-empty terms for the selected language in LanguageSourceAsset");

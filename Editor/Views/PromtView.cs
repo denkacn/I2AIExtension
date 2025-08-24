@@ -90,7 +90,8 @@ namespace I2AIExtension.Editor.Views
                 
                 if (GUILayout.Button("Remove", GUILayout.Width(100)))
                 {
-                    _translateExtensionManager.RemovePromt(promtData);
+                    var result = UiTools.DisplayRemovePromtDialog();
+                    if (result) _translateExtensionManager.RemovePromt(promtData);
                 }
                 
                 EditorGUILayout.EndHorizontal();

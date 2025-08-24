@@ -122,7 +122,8 @@ namespace I2AIExtension.Editor.Views
                 
                 if (GUILayout.Button("Remove", GUILayout.Width(100)))
                 {
-                    _translateExtensionManager.RemoveTranslateProviderSettings(provider);
+                    var result = UiTools.DisplayRemoveProviderDialog();
+                    if (result) _translateExtensionManager.RemoveTranslateProviderSettings(provider);
                 }
 
                 GUILayout.FlexibleSpace();

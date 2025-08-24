@@ -206,6 +206,9 @@ namespace I2AIExtension.Editor.Managers
                 case AiProviderType.OpenAi:
                     _context.TranslateProvider = new OpenAiTranslateProvider();
                     break;
+                case AiProviderType.DeepSeek:
+                    _context.TranslateProvider = new LmStudioTranslateProvider();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
