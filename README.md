@@ -9,7 +9,7 @@ An extension for Unity I2 Localization (https://assetstore.unity.com/packages/to
 5. Install **I2AIExtension** via the Package Manager using: https://github.com/denkacn/I2AIExtension.git
 6. Open the plugin window:  **Tools → I2 Localization AI Translate Extension Window**  
 7. Select the **LanguageSourceAsset** you want to configure.  
-8. Add an **AiTranslateProvider** (both local and external providers are supported, Open AI, Ollama, LM Studio) and select it.  
+8. Add an **AiTranslateProvider** (both local and external providers are supported, Open AI, Ollama, LM Studio, DeepSeek) and select it.  
 9. Add a **prompt**, if needed and select it.  
 10. Select **Source** and **Destination** languages.  
 11. Click **Display Terms** to show all terms.  
